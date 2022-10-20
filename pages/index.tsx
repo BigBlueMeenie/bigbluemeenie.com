@@ -16,14 +16,14 @@ const Home: NextPage = () => {
 
       <main className="grid grid-cols-8 gap-px p-1 pt-24 max-w-max mx-auto">
         <div className="col-span-8">
-          <HomeTitleSVG/>
+          <HomeTitleSVG className="w-full h-auto"/>
         </div>
         <Covers />
         <div className="col-span-8">
-          <HomeSubtitleSVG/>
+          <HomeSubtitleSVG className="w-full h-auto"/>
         </div>
-        <div className="col-span-8 flex text-[11px] tracking-[-.25px] pr-[4px]">
-          <div>EST. 1991—2015</div>
+        <div className="col-span-8 flex flex-wrap-reverse text-[11px] tracking-[-.25px] pr-[4px]">
+          <div className="mr-1">EST. 1991—2015</div>
           <div className="ml-auto">DESIGN TIM SHACKLETON</div>
         </div>
       </main>
