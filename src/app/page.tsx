@@ -5,11 +5,11 @@ import HomeSubtitleSVG from "@/components/home-subtitle";
 export default function Home() {
   return (
     <div className="p-2">
-      <main className="grid grid-cols-8 px-1 py-5 md:py-24 max-w-max mx-auto gap-px items-center">
+      <main className="flex flex-col px-1 py-5 md:py-24 max-w-max mx-auto gap-px">
         <div className="col-span-full">
           <HomeTitleSVG className="w-full h-auto" />
         </div>
-        <Covers />
+        <Covers className="col-span-full" />
         <div className="col-span-full">
           <HomeSubtitleSVG className="w-full h-auto" />
         </div>

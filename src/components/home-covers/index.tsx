@@ -32,6 +32,7 @@ import cover_29 from "./images/29.gif";
 import cover_30 from "./images/30.gif";
 import cover_31 from "./images/31.gif";
 import cover_32 from "./images/32.gif";
+import { cn } from "@/lib/utils";
 
 export const data = [
   cover__1,
@@ -68,22 +69,60 @@ export const data = [
   cover_32,
 ];
 
-function HomeCovers() {
+function HomeCovers({
+  className,
+  delayOffset = 0,
+}: {
+  className?: string;
+  delayOffset?: number;
+}) {
+  // Calculate grid dimensions (8 columns, 4 rows for 32 images)
+  const cols = 8;
+  const rows = Math.ceil(data.length / cols);
+  // Use integer center positions to ensure minimum distance is 0
+  const centerX = Math.floor(cols / 2);
+  const centerY = Math.floor(rows / 2);
+
   return (
-    <>
+    <div
+      className={cn(
+        "grid grid-cols-8 gap-px group hover:animate-none touch-manipulation",
+        className
+      )}
+    >
       {data.map((src, i: number) => {
+        // Calculate grid position
+        const row = Math.floor(i / cols);
+        const col = i % cols;
+
+        // Calculate distance from center
+        const distanceFromCenter = Math.sqrt(
+          Math.pow(col - centerX, 2) + Math.pow(row - centerY, 2)
+        );
+
+        // Create delay based on distance (closer to center = earlier fade)
+        const distanceDelay = Math.round(distanceFromCenter * 100); // 100ms per unit distance
+        const delay = delayOffset + distanceDelay;
+
+        console.log(
+          `${i}: ${delay} (offset: ${delayOffset}, distance: ${distanceDelay})`
+        );
         return (
-          <Image
-            src={src}
-            key={i}
-            alt="Album cover image"
-            width={200}
-            height={200}
-            className="w-full h-full object-cover"
-          />
+          <div key={i} className="aspect-square">
+            <Image
+              src={src}
+              alt="Album cover image"
+              width={200}
+              height={200}
+              className="w-full h-full object-cover transition-opacity duration-400 ease-in-out group-hover:opacity-0"
+              style={{
+                transitionDelay: `${delay}ms`,
+              }}
+            />
+          </div>
         );
       })}
-    </>
+    </div>
   );
 }
 
