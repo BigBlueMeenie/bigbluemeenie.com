@@ -1,37 +1,37 @@
-import Image from 'next/future/image';
+import Image from "next/image";
 
-import cover__1 from '@/public/covers/1.gif';
-import cover__2 from '@/public/covers/2.gif';
-import cover__3 from '@/public/covers/3.gif';
-import cover__4 from '@/public/covers/4.gif';
-import cover__5 from '@/public/covers/5.gif';
-import cover__6 from '@/public/covers/6.gif';
-import cover__7 from '@/public/covers/7.gif';
-import cover__8 from '@/public/covers/8.gif';
-import cover__9 from '@/public/covers/9.gif';
-import cover_10 from '@/public/covers/10.gif';
-import cover_11 from '@/public/covers/11.gif';
-import cover_12 from '@/public/covers/12.gif';
-import cover_13 from '@/public/covers/13.gif';
-import cover_14 from '@/public/covers/14.gif';
-import cover_15 from '@/public/covers/15.gif';
-import cover_16 from '@/public/covers/16.gif';
-import cover_17 from '@/public/covers/17.gif';
-import cover_18 from '@/public/covers/18.gif';
-import cover_19 from '@/public/covers/19.gif';
-import cover_20 from '@/public/covers/20.gif';
-import cover_21 from '@/public/covers/21.gif';
-import cover_22 from '@/public/covers/22.gif';
-import cover_23 from '@/public/covers/23.gif';
-import cover_24 from '@/public/covers/24.gif';
-import cover_25 from '@/public/covers/25.gif';
-import cover_26 from '@/public/covers/26.gif';
-import cover_27 from '@/public/covers/27.gif';
-import cover_28 from '@/public/covers/28.gif';
-import cover_29 from '@/public/covers/29.gif';
-import cover_30 from '@/public/covers/30.gif';
-import cover_31 from '@/public/covers/31.gif';
-import cover_32 from '@/public/covers/32.gif';
+import cover__1 from "/public/covers/1.gif";
+import cover__2 from "/public/covers/2.gif";
+import cover__3 from "/public/covers/3.gif";
+import cover__4 from "/public/covers/4.gif";
+import cover__5 from "/public/covers/5.gif";
+import cover__6 from "/public/covers/6.gif";
+import cover__7 from "/public/covers/7.gif";
+import cover__8 from "/public/covers/8.gif";
+import cover__9 from "/public/covers/9.gif";
+import cover_10 from "/public/covers/10.gif";
+import cover_11 from "/public/covers/11.gif";
+import cover_12 from "/public/covers/12.gif";
+import cover_13 from "/public/covers/13.gif";
+import cover_14 from "/public/covers/14.gif";
+import cover_15 from "/public/covers/15.gif";
+import cover_16 from "/public/covers/16.gif";
+import cover_17 from "/public/covers/17.gif";
+import cover_18 from "/public/covers/18.gif";
+import cover_19 from "/public/covers/19.gif";
+import cover_20 from "/public/covers/20.gif";
+import cover_21 from "/public/covers/21.gif";
+import cover_22 from "/public/covers/22.gif";
+import cover_23 from "/public/covers/23.gif";
+import cover_24 from "/public/covers/24.gif";
+import cover_25 from "/public/covers/25.gif";
+import cover_26 from "/public/covers/26.gif";
+import cover_27 from "/public/covers/27.gif";
+import cover_28 from "/public/covers/28.gif";
+import cover_29 from "/public/covers/29.gif";
+import cover_30 from "/public/covers/30.gif";
+import cover_31 from "/public/covers/31.gif";
+import cover_32 from "/public/covers/32.gif";
 
 export const data = [
   cover__1,
@@ -65,7 +65,7 @@ export const data = [
   cover_29,
   cover_30,
   cover_31,
-  cover_32
+  cover_32,
 ];
 
 function HomeCovers() {
@@ -73,7 +73,14 @@ function HomeCovers() {
     <>
       {data.map((src, i: number) => {
         return (
-          <Image src={src} key={i} alt="Album cover image" />
+          <Image
+            src={src}
+            key={i}
+            alt="Album cover image"
+            width={200}
+            height={200}
+            className="w-full h-full object-cover"
+          />
         );
       })}
     </>
