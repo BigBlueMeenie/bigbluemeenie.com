@@ -122,4 +122,31 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Prevent scrolling when interacting with touch elements */
+  body.prevent-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+}
+
+@layer utilities {
+  /* Enhanced touch handling for mobile devices */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Prevent page scrolling during touch interactions */
+  .prevent-scroll {
+    touch-action: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+  }
 }
