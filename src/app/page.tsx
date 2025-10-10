@@ -17,7 +17,7 @@ export default function Home() {
       </div>
       <div className="flex flex-wrap-reverse text-[11px] tracking-[-.25px] pr-[4px]">
         <div className="mr-1">EST. 1991—2015</div>
-        <div className="ml-auto">DESIGN TIM SHACKLETON</div>
+        <div className="ml-auto">DESIGN TIM SHACKLETON & ICEMAN</div>
       </div>
     </main>
   );
