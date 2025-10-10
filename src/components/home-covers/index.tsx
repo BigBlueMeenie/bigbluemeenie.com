@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
-import imageData from "./images";
+import { bbm, covers } from "./images";
 
 export default function HomeCovers({
   className,
@@ -45,57 +45,36 @@ export default function HomeCovers({
     [trailDelay]
   );
 
-  // Handle container touch events for mobile trail effect
-  const handleContainerTouchMove = useCallback(
-    (e: React.TouchEvent) => {
-      // Only respond to single-finger touches to allow zoom/pan gestures
-      if (e.touches.length !== 1) {
-        return;
-      }
-
-      e.preventDefault();
-      e.stopPropagation();
-
-      const rect = e.currentTarget.getBoundingClientRect();
-      const touch = e.touches[0];
-      const x = touch.clientX - rect.left;
-      const y = touch.clientY - rect.top;
-
-      // Calculate which tile the touch is over
-      const tileWidth = rect.width / 8; // 8 columns
-      const tileHeight = rect.height / 4; // 4 rows (32 tiles / 8 columns = 4 rows)
-
-      const col = Math.floor(x / tileWidth);
-      const row = Math.floor(y / tileHeight);
-      const tileIndex = row * 8 + col;
-
-      // Make sure the tile index is valid
-      if (tileIndex >= 0 && tileIndex < 32) {
-        handleTileInteraction(tileIndex);
-      }
-    },
-    [handleTileInteraction]
-  );
-
   return (
     <div
       className={cn(
-        "grid grid-cols-4 sm:grid-cols-8 gap-px touch-manipulation prevent-scroll",
+        "grid grid-cols-4 sm:grid-cols-8 gap-px touch-manipulation relative prevent-scroll",
         className
       )}
-      onTouchMove={handleContainerTouchMove}
     >
-      {imageData.map((src, i: number) => {
+      <Image
+        src={bbm}
+        alt="Big Blue Meenie"
+        className="absolute inset-0 object-cover w-full h-full -z-10"
+      />
+      {covers.map((src, i: number) => {
         const isFlipped = flippedTiles.has(i);
 
         return (
           <div
             key={i}
-            className="aspect-square relative"
-            onPointerEnter={() => handleTileInteraction(i)}
-            onTouchStart={() => {
-              handleTileInteraction(i);
+            className="aspect-square relative pointer-events-auto outline outline-black"
+            onPointerEnter={(e: React.PointerEvent<HTMLElement>) =>
+              e.isPrimary && handleTileInteraction(i)
+            }
+            // Release pointer capture to allow enter/level events on mobile
+            onGotPointerCapture={(e: React.PointerEvent<HTMLElement>) => {
+              (e.target as HTMLElement).releasePointerCapture(e.pointerId);
             }}
+            // Prevent element drag on desktop
+            onPointerDown={(e: React.PointerEvent<HTMLElement>) =>
+              e.preventDefault()
+            }
           >
             <Image
               src={src}

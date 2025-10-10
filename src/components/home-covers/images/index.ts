@@ -30,8 +30,11 @@ import cover_29 from "./29.gif";
 import cover_30 from "./30.gif";
 import cover_31 from "./31.gif";
 import cover_32 from "./32.gif";
+import bbmJPG from "./bbm.jpg";
 
-const data = [
+export const bbm = bbmJPG;
+
+export const covers = [
   cover__1,
   cover__2,
   cover__3,
@@ -65,5 +68,3 @@ const data = [
   cover_31,
   cover_32,
 ];
-
-export default data;
